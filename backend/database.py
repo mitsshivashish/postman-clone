@@ -10,13 +10,26 @@ from config import BASE_DIR
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 if not DATABASE_URL:
+    print("[database] ERROR: DATABASE_URL environment variable is missing!")
     raise RuntimeError("DATABASE_URL environment variable is required to start the application.")
 
-engine = create_engine(
-    DATABASE_URL,
-    pool_pre_ping=True,
-    pool_recycle=300
-)
+# SQLAlchemy 1.4+ requires "postgresql://" dialect instead of deprecated "postgres://"
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
+# Safely print the host part of the database URL (hiding username/password)
+safe_url = DATABASE_URL.split("@")[-1] if "@" in DATABASE_URL else DATABASE_URL
+print(f"[database] Initializing connection to database: {safe_url}")
+
+try:
+    engine = create_engine(
+        DATABASE_URL,
+        pool_pre_ping=True,
+        pool_recycle=300
+    )
+except Exception as e:
+    print(f"[database] ERROR: Failed to create SQLAlchemy engine: {e}")
+    raise
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()

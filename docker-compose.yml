@@ -7,12 +7,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
-    volumes:
-      # Persistent volume mount for SQLite to survive restarts and container redeployments
-      - backend_data:/app/data
     environment:
       # Point to the persistent volume path
-      - DATABASE_URL=sqlite:////app/data/postman_clone.db
+      - DATABASE_URL=${DATABASE_URL}
       # Set Allowed Origins for CORS (separate with commas)
       - ALLOWED_ORIGINS=http://localhost:3000,https://postmanclone.yourdomain.com
       # Set APP_ENV to trigger production dotenv file rules
@@ -31,6 +28,3 @@ services:
     depends_on:
       - backend
     restart: always
-
-volumes:
-  backend_data:

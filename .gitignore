@@ -29,6 +29,9 @@ env/
 *.db
 *.sqlite3
 
+# Local migration utilities
+migrate.py
+
 # Environment configurations (Do not commit secrets)
 .env
 .env.local

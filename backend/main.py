@@ -333,7 +333,7 @@ async def run_request(req: RunRequest, db: Session = Depends(get_db)):
         if env:
             for v in env.variables:
                 if v.is_enabled:
-                    variables[v.key] = v.current_value if v.current_value is not None else v.value
+                    variables[v.key] = v.current_value if (v.current_value is not None and v.current_value.strip() != "") else v.value
 
     result = await execute_request(req, variables)
 

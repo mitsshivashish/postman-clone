@@ -21,7 +21,7 @@ export default function VariableHighlightInput({ value, onChange, onKeyDown, pla
 
   const activeEnv = environments.find(e => e.id === activeEnvironmentId);
   const varMap: Record<string, string> = {};
-  activeEnv?.variables.forEach(v => { if (v.is_enabled) varMap[v.key] = v.value; });
+  activeEnv?.variables.forEach(v => { if (v.is_enabled) varMap[v.key] = v.current_value || v.value; });
 
   useEffect(() => {
     if (!overlayRef.current) return;

@@ -10,23 +10,13 @@ from config import BASE_DIR
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 if not DATABASE_URL:
-    db_path = str(BASE_DIR / "postman_clone.db").replace("\\", "/")
-    DATABASE_URL = f"sqlite:///{db_path}"
-else:
-    # If it is a relative SQLite path, resolve it relative to BASE_DIR to prevent CWD dependency
-    if DATABASE_URL.startswith("sqlite:///"):
-        path_part = DATABASE_URL[10:]
-        is_absolute = path_part.startswith("/") or (len(path_part) > 1 and path_part[1] == ":")
-        if not is_absolute:
-            if path_part.startswith("./"):
-                path_part = path_part[2:]
-            db_path = str(BASE_DIR / path_part).replace("\\", "/")
-            DATABASE_URL = f"sqlite:///{db_path}"
+    raise RuntimeError("DATABASE_URL environment variable is required to start the application.")
 
-if DATABASE_URL.startswith("sqlite"):
-    engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
-else:
-    engine = create_engine(DATABASE_URL)
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,
+    pool_recycle=300
+)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()

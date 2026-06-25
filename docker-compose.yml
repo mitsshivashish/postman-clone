@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persistent volume mount for SQLite to survive restarts and container redeployments
+      - backend_data:/app/data
+    environment:
+      # Point to the persistent volume path
+      - DATABASE_URL=sqlite:////app/data/postman_clone.db
+      # Set Allowed Origins for CORS (separate with commas)
+      - ALLOWED_ORIGINS=http://localhost:3000,https://postmanclone.yourdomain.com
+      # Set APP_ENV to trigger production dotenv file rules
+      - APP_ENV=production
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # Bake backend API URL into the frontend build at compile-time
+        - NEXT_PUBLIC_API_URL=https://api.postmanclone.yourdomain.com
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  backend_data:

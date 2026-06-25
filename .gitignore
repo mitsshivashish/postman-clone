@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Next.js build and cache
+.next/
+out/
+build/
+*.tsbuildinfo
+next-env.d.ts
+
+# Python cache and environments
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+venv/
+ENV/
+env/
+
+# Databases (local development SQLite)
+*.db
+*.sqlite3
+
+# Environment configurations (Do not commit secrets)
+.env
+.env.local
+.env.development.local
+.env.production.local
+.env.production
+!.env.example
+
+# IDEs and OS metadata
+.vscode/
+.idea/
+.DS_Store
+*.pem
+*.log

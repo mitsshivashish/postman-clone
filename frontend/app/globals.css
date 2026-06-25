@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+:root {
+  --background: #1a1a1a;
+  --foreground: #d4d4d4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4a4a4a;
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom select styles */
+select {
+  background-image: none;
+}
+
+/* Focus ring */
+*:focus-visible {
+  outline: 2px solid rgba(249, 115, 22, 0.5);
+  outline-offset: 1px;
+}
+
+/* Smooth resize */
+* {
+  transition-property: none;
+}
+.transition-colors {
+  transition-property: color, background-color, border-color;
+  transition-duration: 150ms;
+}
+.transition-opacity {
+  transition-property: opacity;
+  transition-duration: 150ms;
+}
+.transition-all {
+  transition-property: all;
+  transition-duration: 150ms;
+}
+
+/* Light theme overrides */
+.light-theme {
+  --background: #ffffff;
+  --foreground: #1c1c1c;
+}
+
+/* Map specific dark layout classes to light mode counterparts */
+.light-theme .bg-\[\#1a1a1a\] { background-color: #f5f5f5 !important; }
+.light-theme .bg-\[\#1e1e1e\] { background-color: #fcfcfc !important; }
+.light-theme .bg-\[\#161616\] { background-color: #e8e8e8 !important; }
+.light-theme .bg-\[\#252525\] { background-color: #ffffff !important; }
+.light-theme .bg-\[\#151515\] { background-color: #f7f7f7 !important; }
+.light-theme .bg-\[\#2a2a2a\] { background-color: #e2e2e2 !important; }
+.light-theme .bg-\[\#1f1f1f\] { background-color: #f0f0f0 !important; }
+.light-theme .bg-\[\#333\] { background-color: #e5e5e5 !important; }
+.light-theme .bg-\[\#222\] { background-color: #fafafa !important; }
+
+/* Borders */
+.light-theme .border-\[\#2a2a2a\] { border-color: #e2e2e2 !important; }
+.light-theme .border-\[\#3a3a3a\] { border-color: #d8d8d8 !important; }
+.light-theme .border-\[\#1e1e1e\] { border-color: #e2e2e2 !important; }
+
+/* Text colors */
+.light-theme .text-\[\#d4d4d4\] { color: #1c1c1c !important; }
+.light-theme .text-\[\#8b8b8b\] { color: #5a5a5a !important; }
+.light-theme .text-\[\#6b6b6b\] { color: #6e6e6e !important; }
+.light-theme .text-\[\#c4c4c4\] { color: #222222 !important; }
+.light-theme .text-\[\#a0a0a0\] { color: #333333 !important; }
+.light-theme .text-\[\#8695b2\] { color: #475569 !important; }
+.light-theme .text-\[\#5b5b5b\] { color: #6e6e6e !important; }
+.light-theme .text-\[\#4a4a4a\] { color: #999999 !important; }
+
+/* Inputs and interactive elements */
+.light-theme input, .light-theme textarea, .light-theme select {
+  color: #111111 !important;
+  background-color: #ffffff !important;
+  border-color: #d0d0d0 !important;
+}
+.light-theme input::placeholder, .light-theme textarea::placeholder {
+  color: #a0a0a0 !important;
+}
+
+/* Modals */
+.light-theme .bg-\[\#1e1e1e\].border-\[\#2a2a2a\] {
+  background-color: #ffffff !important;
+  border-color: #e2e2e2 !important;
+}
+.light-theme .bg-\[\#161616\].border-b.border-\[\#2a2a2a\] {
+  background-color: #fafafa !important;
+  border-color: #e2e2e2 !important;
+}
+.light-theme .bg-\[\#161616\].border-t.border-\[\#2a2a2a\] {
+  background-color: #fafafa !important;
+  border-color: #e2e2e2 !important;
+}
+
+/* Sidebar and active items */
+.light-theme .hover\:bg-\[\#252525\]:hover { background-color: #e8e8e8 !important; }
+.light-theme .hover\:bg-\[\#222\]:hover { background-color: #e8e8e8 !important; }
+.light-theme .hover\:bg-\[\#333\]:hover { background-color: #e0e0e0 !important; }
+.light-theme .hover\:bg-\[\#2f2f2f\]:hover { background-color: #e8e8e8 !important; }
+.light-theme .bg-orange-500\/20 { background-color: rgba(249, 115, 22, 0.1) !important; }
+

@@ -24,7 +24,7 @@ import os
 app = FastAPI(title="Postman Clone API", version="1.0.0")
 
 allowed_origins_str = os.getenv("ALLOWED_ORIGINS", "*")
-allowed_origins = [o.strip() for o in allowed_origins_str.split(",") if o.strip()]
+allowed_origins = [o.strip().rstrip("/") for o in allowed_origins_str.split(",") if o.strip()]
 
 # Credentials are not allowed with wildcard '*' origin in CORS spec
 allow_credentials = True

@@ -38,6 +38,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+@app.get("/api/uptracker")
+def uptracker():
+    return "ok"
 
 
 @app.on_event("startup")

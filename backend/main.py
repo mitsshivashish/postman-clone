@@ -38,7 +38,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-@app.get("/api/uptracker")
+@app.api_route("/api/uptracker", methods=["GET", "HEAD"])
 def uptracker():
     return "ok"
 
